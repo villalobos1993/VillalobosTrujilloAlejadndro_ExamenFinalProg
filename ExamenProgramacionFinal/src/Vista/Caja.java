@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import Container.Container;
 
@@ -24,6 +25,10 @@ public class Caja {
   private JLabel lblI;
   private JLabel lblF;
   private JLabel lblDinero;
+  private JButton btnFueraDelParking;
+  private JButton btnDentro;
+  private JLabel lblCochesTotal;
+  private JLabel labelCochesAparcados;
   
 
 
@@ -39,6 +44,8 @@ public class Caja {
 		btnR = new JButton("Rigth");
 		
 		btnL = new JButton("left");
+		btnDentro = new JButton("Dentro");
+		lblCochesTotal = new JLabel("aparcados");
 		initialize();
 	}
 
@@ -51,7 +58,7 @@ public class Caja {
 		
 		propiedades();
 		eventos();
-		Mostrar();
+
 	}
 
 	public void propiedades(){
@@ -75,7 +82,7 @@ public class Caja {
 		
 		
 		
-		btnL.setBounds(148, 11, 89, 23);
+		btnL.setBounds(192, 11, 89, 23);
 		frame.getContentPane().add(btnL);
 		
 		
@@ -93,6 +100,34 @@ public class Caja {
 		lblDinero = new JLabel("");
 		lblDinero.setBounds(10, 158, 64, 14);
 		frame.getContentPane().add(lblDinero);
+		
+		btnFueraDelParking = new JButton("Fuera del parking");
+		
+		btnFueraDelParking.setBounds(33, 89, 155, 53);
+		frame.getContentPane().add(btnFueraDelParking);
+		
+		
+		
+		btnDentro.setBounds(220, 89, 115, 53);
+		frame.getContentPane().add(btnDentro);
+		
+		
+		lblCochesTotal.setBounds(10, 66, 89, 14);
+		frame.getContentPane().add(lblCochesTotal);
+		
+		labelCochesAparcados = new JLabel("");
+		labelCochesAparcados.setBounds(109, 66, 46, 14);
+		frame.getContentPane().add(labelCochesAparcados);
+		
+		lblCajaTotal.setVisible(false);
+		lblCtotal.setVisible(false);
+		lblDinero.setVisible(false);
+		lblF.setVisible(false);
+		lblI.setVisible(false);
+		btnL.setVisible(false);
+		btnR.setVisible(false);
+		lblCochesTotal.setVisible(false);
+		labelCochesAparcados.setVisible(false);
 		
 		
 	}
@@ -130,21 +165,52 @@ public class Caja {
 			frame.dispose();
 		}
 	});
+	
+	
+	btnFueraDelParking.addMouseListener(new MouseAdapter() {
+		@Override
+		public void mousePressed(MouseEvent e) {
+			if(Container.getClientes().isEmpty()){
+				JOptionPane.showMessageDialog(frame,"No hay coches en el parking.");
+			}
+			else{
+				MostrarDentro();
+			}
+			
+		}
+	});
+	
+	btnDentro.addMouseListener(new MouseAdapter() {
+		@Override
+		public void mousePressed(MouseEvent e) {
+			if(Container.getClientesSalida().isEmpty()){
+				JOptionPane.showMessageDialog(frame,"No hay coches que hayan salido del Parking hoy.");
+			}
+		}
+	});
+	
 	}
 	
-	public void Mostrar(){
-		double dineroTotal=0;
+	private void MostrarDentro(){
 		
+		btnFueraDelParking.setVisible(false);
+		btnDentro.setVisible(false);
+		labelCochesAparcados.setVisible(true);
+		lblCochesTotal.setVisible(true);
+		
+		double dineroTotal=0;
 		for(int i=0; i<Container.getClientes().size();i++){
 		
-		dineroTotal+=Container.getClientes().get(i).getPrecio();
+			dineroTotal+=Container.getClientes().get(i).getPrecio();
 		
 		}
-		lblCtotal.setText(String.valueOf(dineroTotal));
 		
+		lblCtotal.setText(String.valueOf(dineroTotal));
 		lblI.setText(String.valueOf(Container.getClientes().get(id).getTiempoEntrada().toString()));
-		lblF.setText(String.valueOf(Container.getClientes().get(id).getTiempoSalida().toString()));
+		labelCochesAparcados.setText(String.valueOf(Container.getClientes().size()));
 		lblDinero.setText(String.valueOf(Container.getClientes().get(id).getPrecio()));
+		
+		
 	}
 	
 	

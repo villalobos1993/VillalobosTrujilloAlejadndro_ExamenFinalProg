@@ -19,6 +19,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Inicio {
 
@@ -32,8 +34,6 @@ public class Inicio {
 	private JButton btnSeccionCaja;
 	private JButton btnRegistrar;
 	private JLabel lblMatricula;
-	private JTextField textHora;
-	private JTextField textSalida;
 	private JButton btnPagar;
 	private JTextField textMatricula2;
 	private JLabel lblTotalAPagar;
@@ -43,6 +43,10 @@ public class Inicio {
 	private JLabel lblMtotal;
 	private double dineroTotal;
 	private int id;
+	private JLabel lblIntroduzcaimporte ;
+	private JLabel lblHsalida;
+	private  JLabel lblHentrada;
+	private JButton btnComprobar;
 
 	/**
 	 * Launch the application.
@@ -73,6 +77,26 @@ public class Inicio {
 		btnSeccionPago = new JButton("<html> Pagos y <br>Salida y<br> Vehiculo</html>");
 		lblSalida = new JLabel("Hora salida:");
 		lblUstedEntro = new JLabel("Hora entrada:");
+		
+		lblMatricula = new JLabel("Matricula");
+		btnRegistrar = new JButton("Registrar");
+		btnPagar = new JButton("Pagar y salir del parking");
+		btnPagar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		textMatricula2 = new JTextField();
+		lblTotalAPagar = new JLabel("Total a Pagar");
+		lblCambio = new JLabel("Cambio");
+		textImporte = new JTextField();
+		labelMcambio = new JLabel("");
+		lblMtotal = new JLabel("");
+		lblMtotal.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblIntroduzcaimporte = new JLabel("Introduzca Importe");
+	    lblHsalida = new JLabel("");
+	    lblHentrada = new JLabel("");
+	    btnComprobar = new JButton("Comprobar");
+	  
 		initialize();
 	}
 
@@ -121,56 +145,61 @@ public class Inicio {
 		btnSeccionCaja.setBounds(278, 11, 100, 64);
 		frame.getContentPane().add(btnSeccionCaja);
 		
-		btnRegistrar = new JButton("Registrar");
+		
 		
 		btnRegistrar.setBounds(146, 194, 105, 57);
 		frame.getContentPane().add(btnRegistrar);
 		
-		lblMatricula = new JLabel("Matricula");
+		
 		lblMatricula.setBounds(34, 114, 74, 14);
 		frame.getContentPane().add(lblMatricula);
 		
-		textHora = new JTextField();
-		textHora.setBounds(146, 133, 100, 20);
-		frame.getContentPane().add(textHora);
-		textHora.setColumns(10);
-		
-		textSalida = new JTextField();
-		textSalida.setBounds(146, 158, 100, 20);
-		frame.getContentPane().add(textSalida);
-		textSalida.setColumns(10);
-		
-		btnPagar = new JButton("Pagar y salir del parking");
+	
 		
 		btnPagar.setBounds(114, 194, 175, 57);
 		frame.getContentPane().add(btnPagar);
 		
-		textMatricula2 = new JTextField();
 		
 		textMatricula2.setBounds(146, 111, 100, 20);
 		frame.getContentPane().add(textMatricula2);
 		textMatricula2.setColumns(10);
 		
-		lblTotalAPagar = new JLabel("Total a Pagar");
-		lblTotalAPagar.setBounds(301, 99, 100, 32);
+		
+		lblTotalAPagar.setBounds(301, 79, 100, 27);
 		frame.getContentPane().add(lblTotalAPagar);
 		
-		textImporte = new JTextField();
+		
 		textImporte.setBounds(292, 158, 109, 20);
 		frame.getContentPane().add(textImporte);
 		textImporte.setColumns(10);
 		
-		lblCambio = new JLabel("Cambio");
+		
 		lblCambio.setBounds(319, 194, 46, 14);
 		frame.getContentPane().add(lblCambio);
 		
-		labelMcambio = new JLabel("");
+		
 		labelMcambio.setBounds(319, 215, 87, 36);
 		frame.getContentPane().add(labelMcambio);
 		
-		lblMtotal = new JLabel("");
-		lblMtotal.setBounds(311, 136, 46, 14);
+		
+		lblMtotal.setBounds(294, 111, 107, 20);
 		frame.getContentPane().add(lblMtotal);
+		
+		
+		lblIntroduzcaimporte.setBounds(292, 136, 109, 14);
+		frame.getContentPane().add(lblIntroduzcaimporte);
+		
+		
+		lblHentrada.setBounds(146, 136, 100, 20);
+		frame.getContentPane().add(lblHentrada);
+		
+		
+		lblHsalida.setBounds(156, 161, 90, 14);
+		frame.getContentPane().add(lblHsalida);
+		
+		
+		btnComprobar.setBounds(146, 194, 105, 57);
+		frame.getContentPane().add(btnComprobar);
 		
 		lblIntroduzcaMatricula.setVisible(false);
 		lblSalida.setVisible(false);
@@ -179,8 +208,6 @@ public class Inicio {
 		btnRegistrar.setVisible(false);
 		
 		textMatricula.setVisible(false);
-		textHora.setVisible(false);
-		textSalida.setVisible(false);
 		
 		lblMatricula.setVisible(false);
 		btnPagar.setVisible(false);
@@ -189,6 +216,8 @@ public class Inicio {
 		lblCambio.setVisible(false);
 		labelMcambio.setVisible(false);
 		lblTotalAPagar.setVisible(false);
+		lblIntroduzcaimporte.setVisible(false);
+		btnComprobar.setVisible(false);
 		
 	}
 	
@@ -212,8 +241,8 @@ public class Inicio {
 				lblUstedEntro.setVisible(false);
 				
 			
-				textHora.setVisible(false);
-				textSalida.setVisible(false);
+				lblHentrada.setVisible(false);
+				lblHsalida.setVisible(false);
 				btnPagar.setVisible(false);
 				textMatricula2.setVisible(false);
 			}
@@ -237,18 +266,19 @@ public class Inicio {
 					if(Container.getClientes().get(i).getMatricula().equals(textMatricula.getText())){
 						
 						JOptionPane.showMessageDialog(frame, "Este coche ya esta en el parking");
+						textMatricula.setText("");
 						correcto = false;
 					}
 				}
-				}
+			}
 				if(correcto){
 					
 					Cliente c = new Cliente(new LocalTime());
 					JOptionPane.showMessageDialog(frame, "El vehiculo ha entrado");
 					c.setTiempoEntrada(new LocalTime());
 					c.setMatricula(textMatricula.getText());
-					
 					Container.getClientes().add(c);
+					textMatricula.setText("");
 				}
 				
 			}
@@ -266,45 +296,56 @@ public class Inicio {
 				lblIntroduzcaMatricula.setVisible(false);
 				textMatricula.setVisible(false);
 				btnRegistrar.setVisible(false);
+				btnPagar.setVisible(false);
 				
 				lblMatricula.setVisible(true);
 				lblSalida.setVisible(true);
 				lblUstedEntro.setVisible(true);
 				
 				textMatricula2.setVisible(true);
-				textHora.setVisible(true);
-				textSalida.setVisible(true);
-				btnPagar.setVisible(true);
+				lblHentrada.setVisible(true);
+				lblHsalida.setVisible(true);
+				btnComprobar.setVisible(true);
 			}
 		});
 		
 		/**
-		 * Eventos Focus TextMatricula
+		 * Boton comprobar
 		 * 
 		 */
 		
-		textMatricula2.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent e) {
-				
-				for(int i = 0 ; i<Container.getClientes().size();i++){
+		
+		  btnComprobar.addMouseListener(new MouseAdapter() {
+		    	@Override
+		    	public void mousePressed(MouseEvent e) {
+		    		boolean existe=false;
+		    		
+		    		if(Container.getClientes().isEmpty()){
+		    			JOptionPane.showMessageDialog(frame,"No existe el vehiculo");
+		    		}
+                    for(int i = 0 ; i<Container.getClientes().size();i++){
 					
 					if(textMatricula2.getText().equals(Container.getClientes().get(i).getMatricula())){
-					    id=i;
+					   
+						existe=true;
+						id=i;
 						int minutos1=0;
 						int minutos2=0;
 						int minutos3=0;
 						int minutos4=0;
 						
-						textHora.setText(Container.getClientes().get(i).getTiempoEntrada().toString());
+						lblHentrada.setText(Container.getClientes().get(i).getTiempoEntrada().toString());
 						Container.getClientes().get(i).setTiempoSalida(new LocalTime());
-						textSalida.setText(Container.getClientes().get(i).getTiempoSalida().toString());
+						lblHsalida.setText(Container.getClientes().get(i).getTiempoSalida().toString());
 						
 						
 						
 						int minutos=((Container.getClientes().get(i).getTiempoSalida().getMinuteOfHour()-Container.getClientes().get(i).getTiempoEntrada().getMinuteOfHour()));
 						
-						if(minutos<=30){
+						if(minutos == 0){
+							dineroTotal=1*0.492;
+						}
+						if(minutos<=30 && minutos>0){
 						lblMtotal.setText(String.valueOf(minutos*0.492));
 						}
 						if(minutos>30 && minutos<=60){
@@ -336,15 +377,23 @@ public class Inicio {
 							Container.getClientes().get(i).setPrecio(dineroTotal);
 						}
 						
-						labelMcambio.setText(String.valueOf(dineroTotal) + "E");
+						lblMtotal.setText(String.valueOf(Math.round(dineroTotal * 100.0) / 100.0) + "E");
 						textImporte.setVisible(true);
 						lblCambio.setVisible(false);
-						
+						lblTotalAPagar.setVisible(true);
+						lblIntroduzcaimporte.setVisible(true);
+						btnPagar.setVisible(true);
+						btnComprobar.setVisible(false);
 						
 					}
+					if(!existe){
+						JOptionPane.showMessageDialog(frame,"No existe el vehiculo");
+					}
+					
 				}
 			}
-		});
+		    	
+		    });
 		
 		/**
 		 * Boton Pagar
@@ -378,7 +427,25 @@ public class Inicio {
 					lblMtotal.setVisible(true);
 					lblTotalAPagar.setVisible(true);
 					labelMcambio.setVisible(true);
-					labelMcambio.setText(String.valueOf(cambio));
+					labelMcambio.setText(String.valueOf(Math.round(cambio * 100.0) / 100.0)+"Euros");
+					
+					lblIntroduzcaMatricula.setVisible(false);
+					textMatricula.setVisible(false);
+					btnRegistrar.setVisible(false);
+					btnPagar.setVisible(false);
+					
+					lblMatricula.setVisible(true);
+					lblSalida.setVisible(true);
+					lblUstedEntro.setVisible(true);
+					
+					textMatricula2.setVisible(true);
+					lblHentrada.setVisible(true);
+					lblHsalida.setVisible(true);
+					btnComprobar.setVisible(true);
+					
+					textMatricula2.setText("");
+					lblHentrada.setText("");
+					lblHsalida.setText("");
 					
 				}
 				
@@ -392,6 +459,7 @@ public class Inicio {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				
+				
 				Caja c = new Caja();
 				c.getFrame().setVisible(true);
 				frame.setVisible(false);
@@ -402,7 +470,4 @@ public class Inicio {
 	public JFrame getFrame() {
 		return frame;
 	}
-
-
-	
 }

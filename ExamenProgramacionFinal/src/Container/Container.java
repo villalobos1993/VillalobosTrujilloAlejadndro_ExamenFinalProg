@@ -10,6 +10,13 @@ public class Container {
 		public static ListaOrdenada<Cliente> getClientes() {
 			return Clientes;
 		}
-
+		
+	
+		static ListaOrdenada<Cliente>ClientesSalidos=new ListaOrdenada<Cliente>( 
+				(Cliente a,Cliente b)->a.getTiempoEntrada().compareTo(b.getTiempoEntrada()));
+		
+		public static ListaOrdenada<Cliente> getClientesSalida() {
+			return ClientesSalidos;
+		}
 		
 }
